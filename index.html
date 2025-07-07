@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời Gian Biểu Tuần</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📅 Thời Gian Biểu Tuần</h1>
+            <p>Quản lý lịch học của bạn một cách dễ dàng</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="addTimeSlot()">
+                ➕ Thêm Tiết Học
+            </button>
+            <button class="btn btn-success" onclick="saveData()">
+                💾 Lưu Dữ Liệu
+            </button>
+            <button class="btn btn-warning" onclick="clearAll()">
+                🗑️ Xóa Tất Cả
+            </button>
+            <button class="btn btn-danger" onclick="exportData()">
+                📤 Xuất Dữ Liệu
+            </button>
+        </div>
+
+        <div class="timetable-container">
+            <table class="timetable" id="timetable">
+                <thead>
+                    <tr>
+                        <th class="time-header">Giờ</th>
+                        <th class="day-header">Thứ 2</th>
+                        <th class="day-header">Thứ 3</th>
+                        <th class="day-header">Thứ 4</th>
+                        <th class="day-header">Thứ 5</th>
+                        <th class="day-header">Thứ 6</th>
+                        <th class="day-header">Thứ 7</th>
+                        <th class="day-header">Chủ Nhật</th>
+                    </tr>
+                </thead>
+                <tbody id="timetable-body">
+                    <!-- Dữ liệu sẽ được tạo bởi JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal để thêm/sửa nội dung -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ Chỉnh Sửa Tiết Học</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="subject">Môn học:</label>
+                    <input type="text" id="subject" placeholder="Nhập tên môn học...">
+                </div>
+                <div class="form-group">
+                    <label for="teacher">Giáo viên:</label>
+                    <input type="text" id="teacher" placeholder="Nhập tên giáo viên...">
+                </div>
+                <div class="form-group">
+                    <label for="room">Phòng học:</label>
+                    <input type="text" id="room" placeholder="Nhập phòng học...">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Ghi chú:</label>
+                    <textarea id="notes" placeholder="Ghi chú thêm..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="color">Màu sắc:</label>
+                    <select id="color">
+                        <option value="default">Mặc định</option>
+                        <option value="math">Toán (Vàng)</option>
+                        <option value="literature">Văn (Xanh dương)</option>
+                        <option value="english">Anh (Xanh lá)</option>
+                        <option value="science">Khoa học (Tím)</option>
+                        <option value="history">Lịch sử (Cam)</option>
+                        <option value="break">Giải lao (Xám)</option>
+                        <option value="free">Trống (Trắng)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="saveCell()">💾 Lưu</button>
+                <button class="btn btn-danger" onclick="deleteCell()">🗑️ Xóa</button>
+                <button class="btn btn-secondary" onclick="closeModal()">❌ Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
