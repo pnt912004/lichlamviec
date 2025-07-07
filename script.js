@@ -345,6 +345,28 @@ function exportData() {
     showNotification("Lỗi khi xuất dữ liệu!", "error");
   }
 }
+function exportAsImage() {
+    const table = document.querySelector('.timetable'); // chỉ chụp phần bảng
+    if (!table) {
+        showNotification('Không tìm thấy bảng thời khóa biểu!', 'error');
+        return;
+    }
+
+    html2canvas(table, {
+        backgroundColor: '#ffffff', // nền trắng
+        scale: 2 // tăng độ nét
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'thoikhoabieu_' + new Date().toISOString().split('T')[0] + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        showNotification('Đã xuất ảnh thời khóa biểu!', 'success');
+    }).catch(error => {
+        console.error('Lỗi khi xuất ảnh:', error);
+        showNotification('Lỗi khi xuất ảnh!', 'error');
+    });
+}
 
 // Hiển thị thông báo
 function showNotification(message, type) {
